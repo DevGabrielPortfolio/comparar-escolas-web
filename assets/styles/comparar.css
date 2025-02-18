@@ -10,8 +10,10 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    padding: 20px 0;
 }
 
+/* Container */
 .container {
     width: 100%;
     max-width: 1200px;
@@ -22,32 +24,33 @@ body {
 /* Cabeçalho */
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #0066cc;
     margin-bottom: 10px;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     color: #666;
+    line-height: 1.8;
 }
 
 /* Formulário */
 .formulario {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
 .formulario__conteudo {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .formulario__escola {
@@ -58,52 +61,53 @@ p {
 }
 
 .formulario__escola legend {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #0066cc;
     font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.campo {
     margin-bottom: 15px;
 }
 
+.campo {
+    margin-bottom: 20px;
+}
+
 .campo label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #444;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .campo input {
     width: 100%;
-    padding: 10px;
-    font-size: 1rem;
+    padding: 12px;
+    font-size: 1.1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #fff;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .campo input:focus {
     border-color: #0066cc;
     outline: none;
+    box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
 }
 
 /* Botões */
 .formulario__botoes {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
 }
 
 .btn {
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 12px 25px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn--primario {
@@ -113,6 +117,7 @@ p {
 
 .btn--primario:hover {
     background-color: #004a99;
+    transform: translateY(-2px);
 }
 
 .btn--secundario {
@@ -122,20 +127,21 @@ p {
 
 .btn--secundario:hover {
     background-color: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .formulario__conteudo {
-        gap: 15px;
+        gap: 20px;
     }
 
     .formulario__escola {
-        padding: 15px;
+        padding: 18px;
     }
 
     h1 {
-        font-size: 1.6rem;
+        font-size: 2rem;
     }
 
     p {
@@ -143,11 +149,11 @@ p {
     }
 
     .campo input {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .btn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+        font-size: 1rem;
+        padding: 10px 20px;
     }
 }
