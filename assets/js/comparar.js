@@ -19,22 +19,22 @@ document.getElementById('gerarRelatorio').addEventListener('click', () => {
     const [cidadeMaior, cidadeMenor, maiorCursos, menorCursos] = 
         cursos1 >= cursos2 ? [cidade1, cidade2, cursos1, cursos2] : [cidade2, cidade1, cursos2, cursos1];
 
-    resultado.textContent = `
-#Relatório Cadastro
+    resultado.innerHTML = `
+#Relatório Cadastro<br>
 
-O código ${cod1} pertence à Escola SENAI de ${cidade1}.
-A escola foi construída em ${ano1} e tem ${idade1} anos.
-
-O código ${cod2} pertence à Escola SENAI de ${cidade2}.
-A escola foi construída em ${ano2} e tem ${idade2} anos.
-
-#Fim do Relatório Cadastro
-
-#Relatório de Cursos
-
-O SENAI de ${cidadeMenor} tem menos cursos que o SENAI de ${cidadeMaior}.
-${cidadeMaior}: ${maiorCursos} cursos vs ${cidadeMenor}: ${menorCursos} cursos.
-
+O código ${cod1} pertence à Escola SENAI de ${cidade1}.<br>
+A escola foi construída em ${ano1} e tem ${idade1} anos.<br>
+<br>
+O código ${cod2} pertence à Escola SENAI de ${cidade2}.<br>
+A escola foi construída em ${ano2} e tem ${idade2} anos.<br>
+<br>
+#Fim do Relatório Cadastro<br>
+<br>
+#Relatório de Cursos<br>
+<br>
+O SENAI de ${cidadeMenor} tem menos cursos que o SENAI de ${cidadeMaior}.<br>
+${cidadeMaior}: ${maiorCursos} cursos vs ${cidadeMenor}: ${menorCursos} cursos.<br>
+<br>
 #Fim do Relatório de Cursos`;
 });
 
