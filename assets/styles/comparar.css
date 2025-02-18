@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #1a1a1a;
     color: #333;
     line-height: 1.6;
     padding: 20px 0;
@@ -19,6 +19,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
 }
 
 /* Cabeçalho */
@@ -41,7 +43,7 @@ p {
 
 /* Formulário */
 .formulario {
-    background-color: #fff;
+    background-color: #8a8a8a;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
@@ -61,10 +63,9 @@ p {
 }
 
 .formulario__escola legend {
-    font-size: 1.3rem;
-    color: #0066cc;
+    font-size: 2rem;
+    color: #0481ff;
     font-weight: bold;
-    margin-bottom: 15px;
 }
 
 .campo {
@@ -80,18 +81,21 @@ p {
 
 .campo input {
     width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    border: 1px solid #ccc;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    padding: 10px;
+    border: 3px solid #3498db;
     border-radius: 6px;
-    background-color: #fff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    color: #000000;
+    transition: border-color 0.3sease-in-out;
+    margin-left: 0.5rem;
 }
 
 .campo input:focus {
-    border-color: #0066cc;
+    border-color: #1abc9c;
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
 }
 
 /* Botões */
@@ -111,23 +115,55 @@ p {
 }
 
 .btn--primario {
-    background-color: #0066cc;
-    color: white;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3sease, transform 0.2sease;
+    display: flex;
+    margin: auto;
 }
 
 .btn--primario:hover {
-    background-color: #004a99;
-    transform: translateY(-2px);
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.btn--primario:active{
+    transform: scale(0.95);
 }
 
 .btn--secundario {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3sease, transform 0.2sease;
+    display: flex;
+    margin: auto;
 }
 
 .btn--secundario:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
+    background-color: #b70000;
+    transform: scale(1.1);
+}
+
+.btn--secundario:active{
+    transform: scale(0.95);
+}
+
+.resultado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
 }
 
 /* Responsividade */

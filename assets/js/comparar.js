@@ -1,13 +1,45 @@
-const cod = document.getElementById('codigo1').value;
-const cidade = document.getElementById('cidade1').value;
-const ano = document.getElementById('anoConstrucao1').value;
-const cursos = document.getElementById('quantCursos1').value;
-const cod2 = document.getElementById('codigo2').value;
-const cidade2 = document.getElementById('cidade2').value;
-const ano2 = document.getElementById('anoConstrucao2').value;
-const cursos2 = document.getElementById('quantCursos2').value;
+const resultado = document.getElementById('resultado');
 
-const gerarRelatorio = document.getElementById('gerarRelatorio');
-const limparRelatorio = document.getElementById('limparRelatorio');
+document.getElementById('gerarRelatorio').addEventListener('click', () => {
+    // Função auxiliar para capturar e converter valores
+    const getValue = (id) => document.getElementById(id).value.trim();
+    const getNumber = (id) => Number(getValue(id));
 
+    const cod1 = getValue('codigo1'), cidade1 = getValue('cidade1'), ano1 = getNumber('anoConstrucao1'), cursos1 = getNumber('quantCursos1');
+    const cod2 = getValue('codigo2'), cidade2 = getValue('cidade2'), ano2 = getNumber('anoConstrucao2'), cursos2 = getNumber('quantCursos2');
 
+    if (![cod1, cidade1, cod2, cidade2].every(Boolean) || [ano1, cursos1, ano2, cursos2].some(isNaN)) {
+        resultado.textContent = "Por favor, preencha todos os campos corretamente.";
+        return;
+    }
+
+    const anoAtual = new Date().getFullYear();
+    const idade1 = anoAtual - ano1, idade2 = anoAtual - ano2;
+
+    const [cidadeMaior, cidadeMenor, maiorCursos, menorCursos] = 
+        cursos1 >= cursos2 ? [cidade1, cidade2, cursos1, cursos2] : [cidade2, cidade1, cursos2, cursos1];
+
+    resultado.textContent = `
+#Relatório Cadastro
+
+O código ${cod1} pertence à Escola SENAI de ${cidade1}.
+A escola foi construída em ${ano1} e tem ${idade1} anos.
+
+O código ${cod2} pertence à Escola SENAI de ${cidade2}.
+A escola foi construída em ${ano2} e tem ${idade2} anos.
+
+#Fim do Relatório Cadastro
+
+#Relatório de Cursos
+
+O SENAI de ${cidadeMenor} tem menos cursos que o SENAI de ${cidadeMaior}.
+${cidadeMaior}: ${maiorCursos} cursos vs ${cidadeMenor}: ${menorCursos} cursos.
+
+#Fim do Relatório de Cursos`;
+});
+
+document.getElementById('limparRelatorio').addEventListener('click', () => {
+    ['codigo1', 'cidade1', 'anoConstrucao1', 'quantCursos1', 'codigo2', 'cidade2', 'anoConstrucao2', 'quantCursos2']
+        .forEach(id => document.getElementById(id).value = "");
+    resultado.textContent = "";
+});
