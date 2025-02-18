@@ -1,45 +1,85 @@
-const resultado = document.getElementById('resultado');
+const botaoCalcular = document.getElementById('gerarRelatorio');
+const botaoLimpar = document.getElementById('limparRelatorio');
 
-document.getElementById('gerarRelatorio').addEventListener('click', () => {
-    // Função auxiliar para capturar e converter valores
-    const getValue = (id) => document.getElementById(id).value.trim();
-    const getNumber = (id) => Number(getValue(id));
+class Senai{
+    codigo;
+    cidade;
+    anoConstrucao;
+    qtdeCursos;
 
-    const cod1 = getValue('codigo1'), cidade1 = getValue('cidade1'), ano1 = getNumber('anoConstrucao1'), cursos1 = getNumber('quantCursos1');
-    const cod2 = getValue('codigo2'), cidade2 = getValue('cidade2'), ano2 = getNumber('anoConstrucao2'), cursos2 = getNumber('quantCursos2');
-
-    if (![cod1, cidade1, cod2, cidade2].every(Boolean) || [ano1, cursos1, ano2, cursos2].some(isNaN)) {
-        resultado.textContent = "Por favor, preencha todos os campos corretamente.";
-        return;
+    constructor(codigo, cidade, anoConstrucao, qtdeCursos){
+        this.cidade = cidade;
+        this.codigo = codigo;
+        this.anoConstrucao = anoConstrucao;
+        this.idade = this.calcularIdade();
+        this.qtdeCursos = qtdeCursos;
     }
 
-    const anoAtual = new Date().getFullYear();
-    const idade1 = anoAtual - ano1, idade2 = anoAtual - ano2;
+    calcularIdade(){
+        return new Date().getFullYear() - this.anoConstrucao;
+    }
 
-    const [cidadeMaior, cidadeMenor, maiorCursos, menorCursos] = 
-        cursos1 >= cursos2 ? [cidade1, cidade2, cursos1, cursos2] : [cidade2, cidade1, cursos2, cursos1];
+    dadosEscola() {
+        return `Código: ${this.codigo}, Cidade: ${this.cidade}, Ano de Construção: ${this.anoConstrucao}, Idade: ${this.idade} anos, Cursos: ${this.qtdeCursos}`;
+    }
+}
 
-    resultado.innerHTML = `
-#Relatório Cadastro<br>
+function compararEscolas(escola1, escola2) {
+    if (escola1.qtdeCursos > escola2.qtdeCursos) {
+        return `${escola1.cidade} tem mais cursos que ${escola2.cidade}.`;
+    } else if (escola1.qtdeCursos < escola2.qtdeCursos) {
+        return `${escola2.cidade} tem mais cursos que ${escola1.cidade}.`;
+    } else {
+        return `Ambas as escolas possuem a mesma quantidade de cursos.`;
+    }
+}
 
-O código ${cod1} pertence à Escola SENAI de ${cidade1}.<br>
-A escola foi construída em ${ano1} e tem ${idade1} anos.<br>
-<br>
-O código ${cod2} pertence à Escola SENAI de ${cidade2}.<br>
-A escola foi construída em ${ano2} e tem ${idade2} anos.<br>
-<br>
-#Fim do Relatório Cadastro<br>
-<br>
-#Relatório de Cursos<br>
-<br>
-O SENAI de ${cidadeMenor} tem menos cursos que o SENAI de ${cidadeMaior}.<br>
-${cidadeMaior}: ${maiorCursos} cursos vs ${cidadeMenor}: ${menorCursos} cursos.<br>
-<br>
-#Fim do Relatório de Cursos`;
-});
+botaoCalcular.addEventListener('click', function gerarRelatorio(){
 
-document.getElementById('limparRelatorio').addEventListener('click', () => {
-    ['codigo1', 'cidade1', 'anoConstrucao1', 'quantCursos1', 'codigo2', 'cidade2', 'anoConstrucao2', 'quantCursos2']
-        .forEach(id => document.getElementById(id).value = "");
-    resultado.textContent = "";
-});
+    const cod1 = document.getElementById('codigo1').value;
+    const cidade1 = document.getElementById('cidade1').value;
+    const ano1 = document.getElementById('anoConstrucao1').value;
+    const cursos1 = document.getElementById('quantCursos1').value;
+
+    const cod2 = document.getElementById('codigo2').value;
+    const cidade2 = document.getElementById('cidade2').value;
+    const ano2 = document.getElementById('anoConstrucao2').value;
+    const cursos2 = document.getElementById('quantCursos2').value;
+    
+    
+    console.log(cursos2);
+
+    const escola1 = new Senai(cod1, cidade1, ano1, cursos1);
+    const escola2 = new Senai(cod2, cidade2, ano2, cursos2);
+    const comparacao = compararEscolas(escola1, escola2);
+
+    console.log(escola1);
+    console.log(escola2);
+    console.log(comparacao);
+
+    document.getElementById('relatorio').style.display = 'flex';
+
+    document.getElementById('relatorio').innerHTML = `
+        <h3>Relatório das Escolas SENAI</h3>
+        <p>${escola1.dadosEscola()}</p>
+        <p>${escola2.dadosEscola()}</p>
+        <h3>Comparação</h3>
+        <p>${comparacao}</p>
+    `;
+
+})
+
+botaoLimpar.addEventListener('click', function limparRelatorio(){
+    document.getElementById('codigo1').value = '';
+    document.getElementById('cidade1').value = '';
+    document.getElementById('anoConstrucao1').value = '';
+    document.getElementById('quantCursos1').value = '';
+
+    document.getElementById('codigo2').value = '';
+    document.getElementById('cidade2').value = '';
+    document.getElementById('anoConstrucao2').value = '';
+    document.getElementById('quantCursos2').value = '';
+
+    document.getElementById('relatorio').innerHTML = '';
+    document.getElementById('relatorio').style.display = 'none';
+})

@@ -158,7 +158,7 @@ p {
     transform: scale(0.95);
 }
 
-.resultado > p{
+.relatorio > p{
     display: flex;
     align-items: center;
     justify-content: center;
